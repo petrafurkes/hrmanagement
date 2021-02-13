@@ -1,5 +1,6 @@
 package com.hrmanagement.hrmanagement.service;
 
+import com.hrmanagement.hrmanagement.security.services.UserDetailsImpl;
 import com.hrmanagement.hrmanagement.model.ERole;
 import com.hrmanagement.hrmanagement.model.Role;
 import com.hrmanagement.hrmanagement.model.User;
@@ -18,10 +19,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
-
-import javax.jms.Message;
-import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -54,7 +51,7 @@ public class AuthService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String jwt = jwtUtils.generateJwtToken(authentication);
 
-        com.hrmanagement.hrmanagement.security.services.UserDetailsImpl userDetails = (com.hrmanagement.hrmanagement.security.services.UserDetailsImpl) authentication.getPrincipal();
+        UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
         List<String> roles = userDetails.getAuthorities().stream()
                 .map(item -> item.getAuthority())
                 .collect(Collectors.toList());
@@ -77,8 +74,7 @@ public class AuthService {
 
         User user = new User(signUpRequest.getUsername(),
                 signUpRequest.getEmail(),
-                encoder.encode(signUpRequest.getPassword()),
-                "applicant");
+                encoder.encode(signUpRequest.getPassword()));
 
         Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
@@ -130,8 +126,7 @@ public class AuthService {
 
         User user = new User(signUpRequest.getUsername(),
                 signUpRequest.getEmail(),
-                encoder.encode(signUpRequest.getPassword()),
-                "hruser");
+                encoder.encode(signUpRequest.getPassword()));
 
         Set<String> strRoles = signUpRequest.getRole();
         Set<Role> roles = new HashSet<>();
