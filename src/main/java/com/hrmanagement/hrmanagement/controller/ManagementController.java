@@ -2,6 +2,7 @@ package com.hrmanagement.hrmanagement.controller;
 import com.hrmanagement.hrmanagement.exception.ResourceNotFoundException;
 import com.hrmanagement.hrmanagement.model.*;
 import com.hrmanagement.hrmanagement.payload.request.BlogPostRequest;
+import com.hrmanagement.hrmanagement.payload.request.EmployeeRequest;
 import com.hrmanagement.hrmanagement.payload.request.InterviewRequest;
 import com.hrmanagement.hrmanagement.payload.request.JobRequest;
 import com.hrmanagement.hrmanagement.payload.response.MessageResponse;
@@ -10,6 +11,7 @@ import com.hrmanagement.hrmanagement.repository.BlogPostRepository;
 import com.hrmanagement.hrmanagement.repository.JobRepository;
 import com.hrmanagement.hrmanagement.repository.UserRepository;
 import com.hrmanagement.hrmanagement.service.BlogPostService;
+import com.hrmanagement.hrmanagement.service.EmployeeService;
 import com.hrmanagement.hrmanagement.service.JobService;
 import com.hrmanagement.hrmanagement.service.UserApplicantService;
 import org.slf4j.Logger;
@@ -37,6 +39,9 @@ public class ManagementController {
 
     @Autowired
     UserApplicantService userApplicantService;
+
+    @Autowired
+    EmployeeService employeeService;
 
     @Autowired
     JobRepository jobRepository;
@@ -217,5 +222,15 @@ public class ManagementController {
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+
+    @PostMapping("/employee")
+    @PreAuthorize("hasRole('MANAGEMENT')")
+    public ResponseEntity<?> registerNewEmployee(@Valid @RequestBody EmployeeRequest employeeRequest) {
+        Employee employee = new Employee();
+        employeeService.registerNewEmployee(employee, employeeRequest);
+        return ResponseEntity.ok()
+                .body(new MessageResponse(employee.getFullName() + " was registered successfully"));
     }
 }

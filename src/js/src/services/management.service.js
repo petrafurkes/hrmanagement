@@ -4,7 +4,7 @@ import authHeader from './auth-header';
 const API_URL = 'http://localhost:8080/api/management';
 
 
-class UserService {
+class ManagementService {
 
 
   addNewJob(contractType, jobCategory, jobCity, jobDateCreated, jobDateExpiration, jobDescription, jobRequirements, jobResponsibilities, jobStatus, jobTitle, salary) {
@@ -91,7 +91,26 @@ class UserService {
   }
 
 
+  registerNewEmployee(fullName, mobileNumber, personalEmail, birthDate, gender, homeAddress) {
+    
+    return axios.post(API_URL + '/employee', {
+      fullName,
+      mobileNumber,
+      personalEmail,
+      birthDate,
+      gender,
+      homeAddress
+    }, {
+      headers: authHeader(),
+    })
+    .then(response => {
+      console.log(JSON.stringify(response.data))
+      return response.data;
+    });
+  }
+
+
 
 }
 
-export default new UserService();
+export default new ManagementService();

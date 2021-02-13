@@ -34,6 +34,10 @@ import Page401 from './401';
 import Page404 from './404';
 
 
+import RegisterNewEmployee from './employee/registerNewEmployee';
+import AddEmploymentDetails from './employee/employmentDetails/AddEmploymentDetails';
+
+
 export {
   Home,
   About,
@@ -66,5 +70,7 @@ export {
   DeleteExperience,
   WithdrawApplication,
   Page401,
-  Page404
+  Page404,
+  RegisterNewEmployee,
+  AddEmploymentDetails
 }

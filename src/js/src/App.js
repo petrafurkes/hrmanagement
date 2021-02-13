@@ -3,7 +3,7 @@ import './components/css/style.css';
 
 
 import {Home, About, Jobs, Profile, RegisterUser,
-        RegisterHRUser, 
+        RegisterHRUser, RegisterNewEmployee, AddEmploymentDetails,
         Contact, Login, HRUser, AddPersonalDetails, 
         AddEducation, AddExperience, Admin, AddJob, 
         JobSingle, AddCV, EditPersonalDetails,
@@ -88,9 +88,23 @@ class App extends Component {
                                             {/* management board */}
                                             {hrUser && (
                                                 <li>
-                                                    <a href="/management/hruser" className="link-nav">
-                                                        Management Board - {currentUser.username}
-                                                    </a>
+                                                    <a href="/management/hruser"  class="link-nav dropdown-toggle">Management Board - {currentUser.username}</a>
+                                                    <input type="checkbox" id="drop-2" />
+                                                    <ul class="first-dropdwon">
+                                                        <li><a href="/management/register-new-employee">Register new employee</a></li>
+                                                        <li><a href="/management/employee/add-employment-details">Add employment details</a></li>
+                                                        {/* <li><a href="job-single.html">Job detail</a></li>
+                                                        <li><a href="team.html">Employers</a></li>
+                                                        <li><a href="team-single.html">Employers detail</a></li>
+                                                        <li><a href="candidate.html">Candidates</a></li>
+                                                        <li><a href="candidate-single.html">Candidates detail</a></li>
+                                                        <li><a href="timeline.html">Timeline</a></li>
+                                                        <li><a href="faq.html">Faq page</a></li>
+                                                        <li><a href="coming-soon.html">Coming soon</a></li>
+                                                        <li><a href="error.html">404 - error</a></li>
+                                                        <li><a href="search-results.html">Search results</a></li>
+                                                        <li><a href="email-template.html">Email template</a></li> */}
+                                                    </ul>
                                                 </li>
                                             )}
 
@@ -168,6 +182,10 @@ class App extends Component {
                     <Route path="/management/hruser" component={HRUser}/>
                     <Route exact path="/management/user-applicant/:id" component={UAProfile} />
                     <Route exact path="/management/:applicantId/application/:applicationId" component={HiringProcess} />
+                    <Route exact path="/management/register-new-employee" component={RegisterNewEmployee} />
+                    <Route exact path="/management/employee/add-employment-details" component={AddEmploymentDetails} />
+
+
                     <Route exact path="/401" component={Page401}/>
                     <Route exact path="/coming-soon" component={ComingSoon} />
                     <Route exact path="/*" component={Page404}/>
