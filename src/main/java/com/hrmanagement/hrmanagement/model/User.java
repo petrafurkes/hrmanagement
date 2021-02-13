@@ -6,8 +6,8 @@ import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
-@Entity
-@Table(	name = "users",
+@Entity(name = "Users")
+@Table(name = "users",
         uniqueConstraints = {
                 @UniqueConstraint(columnNames = "username"),
                 @UniqueConstraint(columnNames = "email")

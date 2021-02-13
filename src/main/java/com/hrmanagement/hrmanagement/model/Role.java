@@ -2,9 +2,10 @@ package com.hrmanagement.hrmanagement.model;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "Roles")
 @Table(name = "roles")
 public class Role {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;

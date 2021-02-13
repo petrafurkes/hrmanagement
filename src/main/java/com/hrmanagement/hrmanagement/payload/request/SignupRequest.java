@@ -16,7 +16,20 @@ public class SignupRequest {
     
     @NotBlank
     private String password;
-  
+
+    public SignupRequest(String username,
+                         String email,
+                         Set<String> role,
+                         String password) {
+        this.username = username;
+        this.email = email;
+        this.role = role;
+        this.password = password;
+    }
+
+    public SignupRequest() {
+    }
+
     public String getUsername() {
         return username;
     }
