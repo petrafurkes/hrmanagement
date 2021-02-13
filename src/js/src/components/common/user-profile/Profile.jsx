@@ -300,9 +300,17 @@ export default class Profile extends Component {
                                             </div>
                                         :(
                                             <div>
+                                                <div>
+                                                    <aside className="posts single-left-inner">
+                                                        <Link to="/account/tab/personal-details" className="follow">Complete your profile</Link>
+                                                    </aside>
+                                                </div>
+
+                                                <div>
                                                 <aside className="posts single-left-inner">
-                                                    <Link to="/account/tab/personal-details" className="follow">Complete your profile</Link>
+                                                    <Link to="/account/delete" className="follow">Delete account</Link>
                                                 </aside>
+                                                </div>
                                             </div>
                                         )}
                                         
