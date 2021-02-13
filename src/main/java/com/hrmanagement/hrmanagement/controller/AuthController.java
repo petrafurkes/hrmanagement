@@ -177,5 +177,8 @@ public class AuthController {
 		userRepository.save(user);
 
 		return ResponseEntity.ok(new MessageResponse("You have registered successfully, please login!"));
+
+
+
 	}
 }
