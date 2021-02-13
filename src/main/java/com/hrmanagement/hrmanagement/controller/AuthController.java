@@ -103,13 +103,16 @@ public class AuthController {
 					Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
 							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 					roles.add(adminRole);
-
+					break;
+				case "employee":
+					Role employeeRole = roleRepository.findByName(ERole.ROLE_EMPLOYEE)
+							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+					roles.add(employeeRole);
 					break;
 				case "mod":
 					Role modRole = roleRepository.findByName(ERole.ROLE_MANAGEMENT)
 							.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 					roles.add(modRole);
-
 					break;
 				default:
 					Role userRole = roleRepository.findByName(ERole.ROLE_USER)
@@ -157,13 +160,16 @@ public class AuthController {
 						Role adminRole = roleRepository.findByName(ERole.ROLE_ADMIN)
 								.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 						roles.add(adminRole);
-
+						break;
+					case "employee":
+						Role employeeRole = roleRepository.findByName(ERole.ROLE_EMPLOYEE)
+								.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+						roles.add(employeeRole);
 						break;
 					default:
 						Role modRole = roleRepository.findByName(ERole.ROLE_MANAGEMENT)
 								.orElseThrow(() -> new RuntimeException("Error: Role is not found."));
 						roles.add(modRole);
-
 						break;
 					case "user":
 						Role userRole = roleRepository.findByName(ERole.ROLE_USER)
